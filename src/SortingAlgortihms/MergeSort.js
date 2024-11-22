@@ -40,13 +40,18 @@ function merge(arr,s,mid,e,animations){
     }
 }
 
-export default function mergeSort(arr,s,e,animations){
+function mergeSortHelper(arr,s,e,animations){
     if(s>=e)
     return
 
     let mid=Math.floor((s + e) / 2);
 
-    mergeSort(arr,s,mid,animations);
-    mergeSort(arr,mid+1,e,animations);
+    mergeSortHelper(arr,s,mid,animations);
+    mergeSortHelper(arr,mid+1,e,animations);
     merge(arr,s,mid,e,animations);
+}
+
+export default function mergeSort(arr,animations){
+    let s=0,e=arr.length-1;
+    mergeSortHelper(arr,s,e,animations);
 }
